@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://443kgqdlrwoa" path="res://Scene/Game/Game.cs" id="1_xb2vu"]
 [ext_resource type="Texture2D" uid="uid://cb0jbdpfvchdv" path="res://Assets/GameBg.png" id="2_k0621"]
 [ext_resource type="PackedScene" uid="uid://d10qbmh2sxnv4" path="res://Scene/Paddle/Paddle.tscn" id="3_ssqj0"]
-[ext_resource type="PackedScene" uid="uid://8erg2v6r3cjv" path="res://Gem/Gem.tscn" id="4_eq4nl"]
+[ext_resource type="PackedScene" uid="uid://8erg2v6r3cjv" path="res://Scene/Gem/Gem.tscn" id="4_eq4nl"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_spawnTimer")]
 script = ExtResource("1_xb2vu")
+_gemScene = ExtResource("4_eq4nl")
+_spawnTimer = NodePath("Timer")
 
 [node name="GameBg" type="Sprite2D" parent="."]
 position = Vector2(587, 340)
@@ -18,3 +20,7 @@ position = Vector2(550, 558)
 
 [node name="Gem" parent="." instance=ExtResource("4_eq4nl")]
 position = Vector2(550, 78)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

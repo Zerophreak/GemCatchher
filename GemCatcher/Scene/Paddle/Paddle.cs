@@ -5,6 +5,7 @@ public partial class Paddle : Area2D
 {
 	[Export] float _speed = 200.0f;
 	[Export] float _margin = 55.0f;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
