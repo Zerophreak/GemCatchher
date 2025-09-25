@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://draf3enyuumsv"]
+[gd_scene load_steps=8 format=3 uid="uid://draf3enyuumsv"]
 
 [ext_resource type="Script" uid="uid://443kgqdlrwoa" path="res://Scene/Game/Game.cs" id="1_xb2vu"]
 [ext_resource type="Texture2D" uid="uid://cb0jbdpfvchdv" path="res://Assets/GameBg.png" id="2_k0621"]
+[ext_resource type="AudioStream" uid="uid://mpj4b2nb1qha" path="res://Assets/explode.wav" id="3_hevcj"]
 [ext_resource type="PackedScene" uid="uid://d10qbmh2sxnv4" path="res://Scene/Paddle/Paddle.tscn" id="3_ssqj0"]
 [ext_resource type="PackedScene" uid="uid://8erg2v6r3cjv" path="res://Scene/Gem/Gem.tscn" id="4_eq4nl"]
+[ext_resource type="AudioStream" uid="uid://184m860l10mi" path="res://Assets/bgm_action_5.mp3" id="5_lpnlh"]
+[ext_resource type="AudioStream" uid="uid://cm0cii4ciuxrw" path="res://Assets/spell1_0.wav" id="6_4osps"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_spawnTimer")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_spawnTimer", "_scoreLabel", "_music", "_effects")]
 script = ExtResource("1_xb2vu")
 _gemScene = ExtResource("4_eq4nl")
 _spawnTimer = NodePath("Timer")
+_scoreLabel = NodePath("ScoreLabel")
+_music = NodePath("Music")
+_effects = NodePath("Effects")
+_explodeSound = ExtResource("3_hevcj")
 
 [node name="GameBg" type="Sprite2D" parent="."]
 position = Vector2(587, 340)
@@ -24,3 +31,27 @@ position = Vector2(550, 78)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.858059, 0.214481, 0.629827, 1)
+theme_override_colors/font_shadow_color = Color(0.923542, 0.901851, 0.907292, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 48
+text = "0000"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lpnlh")
+volume_db = -16.0
+autoplay = true
+
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_4osps")
